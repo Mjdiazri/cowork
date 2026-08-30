@@ -58,9 +58,12 @@ public class EspacioController {
         }
 
         return ResponseEntity.notFound().build();
-
     }
 
-
+        //Get Categoria
+    @GetMapping("/buscar")
+    public ResponseEntity<List<Espacio>> listarCategoria(@RequestParam String categoria){
+        return ResponseEntity.ok(espacioService.listarCategoria(categoria));
+    }
 
 }

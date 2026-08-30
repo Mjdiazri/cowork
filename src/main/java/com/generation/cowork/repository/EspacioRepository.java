@@ -30,6 +30,17 @@ public class EspacioRepository {
         return espacios.stream().filter(espacio -> espacio.getId().equals(id)).findFirst();
     }
 
+        //Devolver por categoria
+    public List<Espacio> encontrarCategoria(String categoria){
+        if (categoria == null){
+            return List.of();
+        }
+        return espacios.stream()
+                .filter(espacio -> espacio.getNombreCategoria()
+                        .equalsIgnoreCase(categoria.toUpperCase()))
+                .toList();
+    }
+
         //Guardar espacio nuevo asignando id
     public Espacio guardar(Espacio espacio){
         espacio.setId(numeroId);

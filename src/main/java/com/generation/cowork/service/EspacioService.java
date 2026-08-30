@@ -35,6 +35,11 @@ public class EspacioService {
         return espacioRepository.encontrarId(id);
     }
 
+        //Read Category
+    public List<Espacio> listarCategoria(String categoria){
+        return espacioRepository.encontrarCategoria(categoria);
+    }
+
         //Update
     public Optional<Espacio> actualizar(Long id, Espacio datosEspacio){
         return espacioRepository.actualizar(id,datosEspacio);
