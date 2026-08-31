@@ -22,33 +22,68 @@ public class EspacioService {
 
         //Create
     public Espacio guardarNuevoEspacio(Espacio espacio){
-        return espacioRepository.guardar(espacio);
+        return espacioRepository.save(espacio);
     }
 
         //Read all
     public List<Espacio> ListarEspacios(){
-        return espacioRepository.encontrarTodo();
+        return espacioRepository.findAll();
     }
 
         //Read one
     public Optional<Espacio> ListarID(Long id){
-        return espacioRepository.encontrarId(id);
-    }
-
-        //Read Category
-    public List<Espacio> listarCategoria(String categoria){
-        return espacioRepository.encontrarCategoria(categoria);
+        return espacioRepository.findById(id);
     }
 
         //Update
     public Optional<Espacio> actualizar(Long id, Espacio datosEspacio){
-        return espacioRepository.actualizar(id,datosEspacio);
+        return espacioRepository.findById(id)
+                .map(espacio -> {
+                    espacio.setNombre(datosEspacio.getNombre());
+                    espacio.setCapacidad(datosEspacio.getCapacidad());
+                    espacio.setDescripcion(datosEspacio.getDescripcion());
+                    espacio.setNombreSede(datosEspacio.getNombreSede());
+                    espacio.setNombreCategoria(datosEspacio.getNombreCategoria());
+                    espacio.setPrecioHora(datosEspacio.getPrecioHora());
+                    return espacioRepository.save(espacio);
+                });
     }
+
 
         //Delete
     public Boolean eliminarId(Long id){
-        return espacioRepository.eliminar(id);
+        if (! espacioRepository.existsById(id)){
+            return false;
+        }
+        espacioRepository.deleteById(id);
+        return true;
     }
+
+
+    /*
+    //Read Category
+    public List<Espacio> listarCategoria(String categoria){
+        if(categoria == null){
+            return List.of();
+        }
+
+        List<Espacio>
+        espacioRepository.findBy()
+
+
+    }
+
+
+    public List<Espacio> listarCategoria(String categoria){
+
+        if (categoria == null){
+            return List.of();
+        }
+        return espacios.stream()
+                .filter(espacio -> espacio.getNombreCategoria()
+                        .equalsIgnoreCase(categoria.toUpperCase()))
+                .toList();
+    }*/
 
 }
 

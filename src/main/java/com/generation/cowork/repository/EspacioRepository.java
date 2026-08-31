@@ -1,6 +1,7 @@
 package com.generation.cowork.repository;
 
 import com.generation.cowork.model.Espacio;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -8,8 +9,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class EspacioRepository {
+public interface EspacioRepository extends JpaRepository<Espacio, Long> {
 
+    /*
     //Lista interna
     private final List<Espacio> espacios = new ArrayList<>();
 
@@ -68,4 +70,6 @@ public class EspacioRepository {
     public boolean eliminar(Long id){
         return espacios.removeIf(espacio -> espacio.getId().equals(id));
     }
+
+     */
 }
